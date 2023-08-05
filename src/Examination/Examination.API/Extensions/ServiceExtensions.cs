@@ -6,6 +6,8 @@ using Examination.Domain.AggregateModels.UserAggregate;
 using Examination.Infrastructure.MongoDb.Repositories;
 using Examination.Infrastructure.MongoDb.SeedWork;
 using MediatR;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.OpenApi.Models;
 using MongoDB.Driver;
 
@@ -30,21 +32,27 @@ namespace Examination.API.Extensions
                               // can also be used to control the format of the API version in route templates
                               options.SubstituteApiVersionInUrl = true;
                           });
-
+            var user = configuration.GetValue<string>("DatabaseSettings:User");
+            var password = configuration.GetValue<string>("DatabaseSettings:Password");
+            var server = configuration.GetValue<string>("DatabaseSettings:Server");
+            var databaseName = configuration.GetValue<string>("DatabaseSettings:DatabaseName");
+            var mongodbConnectionString = "mongodb://" + user + ":" + password + "@" + server + "/" + databaseName + "?authSource=admin";
             services.AddSingleton<IMongoClient>(c =>
             {
-                var user = configuration.GetValue<string>("DatabaseSettings:User");
-                var password = configuration.GetValue<string>("DatabaseSettings:Password");
-                var server = configuration.GetValue<string>("DatabaseSettings:Server");
-                var databaseName = configuration.GetValue<string>("DatabaseSettings:DatabaseName");
-                return new MongoClient(
-                    "mongodb://" + user + ":" + password + "@" + server + "/" + databaseName + "?authSource=admin");
+                return new MongoClient(mongodbConnectionString);
             });
             return services;
         }
 
         public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
         {
+            var user = configuration.GetValue<string>("DatabaseSettings:User");
+            var password = configuration.GetValue<string>("DatabaseSettings:Password");
+            var server = configuration.GetValue<string>("DatabaseSettings:Server");
+            var databaseName = configuration.GetValue<string>("DatabaseSettings:DatabaseName");
+            var mongodbConnectionString = "mongodb://" + user + ":" + password + "@" + server + "/" + databaseName + "?authSource=admin";
+
+
             services.AddScoped(c => c.GetService<IMongoClient>()?.StartSession());
             services.AddAutoMapper(cfg => { cfg.AddProfile(new MappingProfile()); });
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(typeof(StartExamCommandHandler).Assembly));
@@ -69,6 +77,24 @@ namespace Examination.API.Extensions
                 c.SwaggerDoc("v2", new OpenApiInfo { Title = "Examination.API V2", Version = "v2" });
             });
             services.Configure<ExamSettings>(configuration);
+
+            //Health Check
+
+            services.AddHealthChecks()
+                 .AddCheck("self", () => HealthCheckResult.Healthy())
+                 .AddMongoDb(mongodbConnectionString: mongodbConnectionString,
+                             name: "mongo",
+                             failureStatus: HealthStatus.Unhealthy);
+
+            services.AddHealthChecksUI(opt =>
+            {
+                opt.SetEvaluationTimeInSeconds(15); //time in seconds between check
+                opt.MaximumHistoryEntriesPerEndpoint(60); //maximum history of checks
+                opt.SetApiMaxActiveRequests(1); //api requests concurrency
+
+                opt.AddHealthCheckEndpoint("Exam API", "/hc"); //map health check api
+            })
+                  .AddInMemoryStorage();
 
             services.AddTransient<IExamRepository, ExamRepository>();
             services.AddTransient<IExamResultRepository, ExamResultRepository>();
