@@ -31,29 +31,29 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Questions", "Questions", "{
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SeedWork", "SeedWork", "{97F077B8-7A23-4E06-AADA-2F44E0A41CED}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Examination.API", "src\Examination\Examination.API\Examination.API.csproj", "{BE7565F7-79A9-4911-B177-02F21795B050}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Examination.API", "src\Examination\Examination.API\Examination.API.csproj", "{BE7565F7-79A9-4911-B177-02F21795B050}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Examination.Application", "src\Examination\Examination.Application\Examination.Application.csproj", "{15017A85-C579-48F8-95C2-272688B48193}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Examination.Application", "src\Examination\Examination.Application\Examination.Application.csproj", "{15017A85-C579-48F8-95C2-272688B48193}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Examination.Domain", "src\Examination\Examination.Domain\Examination.Domain.csproj", "{A3FC3677-DAE4-4011-A38E-580D1292FCF8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Examination.Domain", "src\Examination\Examination.Domain\Examination.Domain.csproj", "{A3FC3677-DAE4-4011-A38E-580D1292FCF8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Examination.Infrastructure.MongoDb", "src\Examination\Examination.Infrastructure.MongoDb\Examination.Infrastructure.MongoDb.csproj", "{5E52573B-54E3-4099-A9CA-EA2203E17115}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Examination.Infrastructure.MongoDb", "src\Examination\Examination.Infrastructure.MongoDb\Examination.Infrastructure.MongoDb.csproj", "{5E52573B-54E3-4099-A9CA-EA2203E17115}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Identity.Admin.Api", "src\Identitty\Identity.Admin.Api\Identity.Admin.Api.csproj", "{D4924E8C-6D39-42A1-BBD3-3E971ABA9742}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Identity.Admin.Api", "src\Identitty\Identity.Admin.Api\Identity.Admin.Api.csproj", "{D4924E8C-6D39-42A1-BBD3-3E971ABA9742}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Examination", "Examination", "{5EA433C8-1315-4575-BE8E-B0A47B8A00F2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Examination.API.IntegrationTests", "test\Examination\Examination.API.IntegrationTests\Examination.API.IntegrationTests.csproj", "{4661F918-0FEB-4735-9C4C-D71F268BB86D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Examination.API.IntegrationTests", "test\Examination\Examination.API.IntegrationTests\Examination.API.IntegrationTests.csproj", "{4661F918-0FEB-4735-9C4C-D71F268BB86D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Examination.Application.UnitTests", "test\Examination\Examination.Application.UnitTests\Examination.Application.UnitTests.csproj", "{A42CBB80-0856-4D6A-8146-5467B8048780}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Examination.Application.UnitTests", "test\Examination\Examination.Application.UnitTests\Examination.Application.UnitTests.csproj", "{A42CBB80-0856-4D6A-8146-5467B8048780}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Examination.Domain.UnitTests", "test\Examination\Examination.Domain.UnitTests\Examination.Domain.UnitTests.csproj", "{232E7226-A932-46A1-8199-E6736B5D342B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Examination.Domain.UnitTests", "test\Examination\Examination.Domain.UnitTests\Examination.Domain.UnitTests.csproj", "{232E7226-A932-46A1-8199-E6736B5D342B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Examination.Infrastructure.IntegrationTests", "test\Examination\Examination.Infrastructure.IntegrationTests\Examination.Infrastructure.IntegrationTests.csproj", "{86731CD9-7484-479E-8FBE-A4A5D9D0B3AC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Examination.Infrastructure.IntegrationTests", "test\Examination\Examination.Infrastructure.IntegrationTests\Examination.Infrastructure.IntegrationTests.csproj", "{86731CD9-7484-479E-8FBE-A4A5D9D0B3AC}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Identity", "Identity", "{A5ABF891-762A-4A32-BA8C-3E7DFA12F832}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Identity.API.IntegrationTests", "test\Identity\Identity.API.IntegrationTests\Identity.API.IntegrationTests.csproj", "{CB2D79FB-1898-48EB-8B04-69EED5180AFB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Identity.API.IntegrationTests", "test\Identity\Identity.API.IntegrationTests\Identity.API.IntegrationTests.csproj", "{CB2D79FB-1898-48EB-8B04-69EED5180AFB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
