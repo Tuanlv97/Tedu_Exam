@@ -1,13 +1,12 @@
-﻿using Examination.Application.Queries;
-using Examination.Application.Queries.V1;
+﻿using Examination.Application.Queries.V1;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Examination.API.Controllers.V1
+namespace Examination.API.Controllers.V2
 {
     [Route("api/v{version:apiVersion}/[controller]")]
     [ApiController]
-    [ApiVersion("1.0")]
+    [ApiVersion("2.0")]
     public class ExamsController : ControllerBase
     {
         private readonly IMediator _mediator;
@@ -18,7 +17,7 @@ namespace Examination.API.Controllers.V1
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetExamList()
+        public async Task<IActionResult> GetExamList(string sample)
         {
             var query = new GetHomeExamListQuery();
             var queryResult = await _mediator.Send(query);

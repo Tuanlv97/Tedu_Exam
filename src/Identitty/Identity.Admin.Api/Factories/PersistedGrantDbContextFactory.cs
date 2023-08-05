@@ -21,7 +21,7 @@ namespace Identity.Admin.Api.Factories
             var optionsBuilder = new DbContextOptionsBuilder<PersistedGrantDbContext>();
             var operationOptions = new OperationalStoreOptions();
 
-            optionsBuilder.UseSqlServer(config.GetConnectionString("DefaultConnection"), sqlServerOptionsAction: o => o.MigrationsAssembly(typeof(Startup).Assembly.FullName));
+            optionsBuilder.UseSqlServer(config.GetConnectionString("DefaultConnection"), sqlServerOptionsAction: o => o.MigrationsAssembly(typeof(Program).Assembly.FullName));
 
 
             return new PersistedGrantDbContext(optionsBuilder.Options, operationOptions);

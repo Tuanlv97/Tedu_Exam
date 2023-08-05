@@ -21,7 +21,7 @@ namespace Identity.Admin.Api.Factories
             var optionsBuilder = new DbContextOptionsBuilder<ConfigurationDbContext>();
             var storeOptions = new ConfigurationStoreOptions();
 
-            optionsBuilder.UseSqlServer(config.GetConnectionString("DefaultConnection"), sqlServerOptionsAction: o => o.MigrationsAssembly(typeof(Startup).Assembly.FullName));
+            optionsBuilder.UseSqlServer(config.GetConnectionString("DefaultConnection"), sqlServerOptionsAction: o => o.MigrationsAssembly(typeof(Program).Assembly.FullName));
 
 
             return new ConfigurationDbContext(optionsBuilder.Options, storeOptions);

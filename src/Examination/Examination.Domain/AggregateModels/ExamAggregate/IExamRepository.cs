@@ -8,4 +8,3 @@ namespace Examination.Domain.AggregateModels.ExamAggregate
         Task<Exam> GetExamByIdAsync(string id);
     }
 }
-QuestionAggregate

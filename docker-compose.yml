@@ -1,4 +1,4 @@
-version: '3.8'
+version: '3.4'
 
 services:
   mongodb:
@@ -7,7 +7,7 @@ services:
     ports:
       - '27017:27017'
     volumes:
-      - mongo-data:/var/lib/mongodb/data
+      - mongo-data:/var/lib/monogodb/data
     networks:
       - tedu_exam
     restart: always
@@ -15,8 +15,7 @@ services:
       MONGO_INITDB_ROOT_USERNAME: mongoadmin
       MONGO_INITDB_ROOT_PASSWORD: Admin@123$$
 
-
-  services: 
+  sqlserver:
     container_name: sqlserver.db
     image: mcr.microsoft.com/mssql/server:2017-latest
     ports:
@@ -30,11 +29,9 @@ services:
       ACCEPT_EULA: Y
       SA_PASSWORD: Admin@123$$
 
-    
-  networks:
-    tedu_exam:
-      driver: bridge
-  volumes:
-    mongo-data:
-    sqlserver-data:
-
+networks:
+  tedu_exam:
+    driver: bridge
+volumes:
+  mongo-data:
+  sqlserver-data:
