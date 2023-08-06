@@ -16,7 +16,7 @@ namespace Identity.Admin.Api.Databases
             {
                 {"ExamWebApp", configuration.GetValue<string>("ExamWebAppClient")},
                 {"ExamWebAdmin", configuration.GetValue<string>("ExamWebAdminClient")},
-                {"ExamApi", configuration.GetValue<string>("ExamApiClient")}
+                {"ExamApi", configuration.GetValue<string>("ExamWebApiClient")}
             };
 
 

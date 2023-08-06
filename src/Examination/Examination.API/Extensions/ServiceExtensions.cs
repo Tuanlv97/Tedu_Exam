@@ -1,10 +1,13 @@
-﻿using Examination.Application.Commands.V1.StartExam;
+﻿using Amazon.Runtime.Internal.Endpoints.StandardLibrary;
+using Examination.API.Filters;
+using Examination.Application.Commands.V1.StartExam;
 using Examination.Application.Mapping;
 using Examination.Domain.AggregateModels.ExamAggregate;
 using Examination.Domain.AggregateModels.ExamResultAggregate;
 using Examination.Domain.AggregateModels.UserAggregate;
 using Examination.Infrastructure.MongoDb.Repositories;
 using Examination.Infrastructure.MongoDb.SeedWork;
+using k8s.Models;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
@@ -75,7 +78,53 @@ namespace Examination.API.Extensions
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Examination.API V1", Version = "v1" });
                 c.SwaggerDoc("v2", new OpenApiInfo { Title = "Examination.API V2", Version = "v2" });
+
+                var urlIdentity = configuration.GetValue<string>("IdentityUrl");
+
+                Uri serverUri = new Uri($"{urlIdentity}/connect/authorize");
+                var a = new Uri($"{urlIdentity}/connect/authorize");
+
+                c.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme
+                {
+                    Type = SecuritySchemeType.OAuth2,
+                    Flows = new OpenApiOAuthFlows()
+                    {
+                        Implicit = new OpenApiOAuthFlow()
+                        {
+                            AuthorizationUrl = new Uri($"{configuration.GetValue<string>("IdentityUrl")}/connect/authorize"),
+                            TokenUrl = new Uri($"{configuration.GetValue<string>("IdentityUrl")}/connect/token"),
+                            Scopes = new Dictionary<string, string>()
+                            {
+                                {"full_access", "Full Access"},
+                            }
+                        }
+                    }
+                });
+                c.OperationFilter<AuthorizeCheckOperationFilter>();
+
             });
+
+            var identityUrl = configuration.GetValue<string>("IdentityUrl");
+            services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerDefaults
+                    .AuthenticationScheme;
+                options.DefaultChallengeScheme = Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerDefaults
+                    .AuthenticationScheme;
+            }).AddJwtBearer(options =>
+            {
+                options.Authority = identityUrl;
+                options.RequireHttpsMetadata = false;
+                options.Audience = "exam_api";
+                options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters()
+                {
+                    ValidateIssuerSigningKey = true,
+                    ValidateIssuer = false,
+                    ValidateAudience = false
+                };
+            });
+
+
             services.Configure<ExamSettings>(configuration);
 
             //Health Check
