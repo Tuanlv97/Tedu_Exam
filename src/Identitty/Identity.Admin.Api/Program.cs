@@ -113,6 +113,7 @@ try
     app.UseAuthentication();
 
     app.UseRouting();
+    app.UseStaticFiles();
 
     app.UseIdentityServer();
 
@@ -120,7 +121,9 @@ try
 
     app.UseEndpoints(endpoints =>
     {
-        endpoints.MapControllers();
+        endpoints.MapControllerRoute(
+                           name: "default",
+                           pattern: "{controller=Home}/{action=Index}/{id?}");
     });
 
     using (var scope = app.Services.CreateScope())
