@@ -1,12 +1,18 @@
 using Examination.API.Extensions;
+using Examination.Infrastructure;
+using Examination.Infrastructure.MongoDb.SeedWork;
 using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
+using Microsoft.Extensions.Options;
+using MongoDB.Driver;
 using Serilog;
 using System.Net.Mime;
 using System.Text.Json;
 
 var builder = WebApplication.CreateBuilder(args);
+
+
 
 Log.Logger = new LoggerConfiguration()
         .MinimumLevel.Information()
@@ -76,6 +82,19 @@ try
 
         endpoints.MapControllers();
     });
+
+    builder.WebHost.CaptureStartupErrors(false);
+
+    using (var scope = app.Services.CreateScope())
+    {
+        var services = scope.ServiceProvider;
+        var logger = services.GetRequiredService<ILogger<ExamMongoDbSeeding>>();
+        var settings = services.GetRequiredService<IOptions<ExamSettings>>();
+        var mongoClient = services.GetRequiredService<IMongoClient>();
+        new ExamMongoDbSeeding()
+            .SeedAsync(mongoClient, settings, logger)
+            .Wait();
+    }
 
     app.Run();
 
