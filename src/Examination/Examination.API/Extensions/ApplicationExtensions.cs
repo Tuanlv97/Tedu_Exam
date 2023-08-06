@@ -4,6 +4,7 @@
     {
         public static void UseInfrastructure(this IApplicationBuilder app)
         {
+           // var env = services.GetService<IWebHostEnvironment>();
             app.UseSwagger();
 
             app.UseDeveloperExceptionPage();

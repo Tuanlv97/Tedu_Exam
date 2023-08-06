@@ -1,4 +1,5 @@
 ﻿using Identity.Admin.Api.Databases;
+using Identity.Admin.API.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using System.Reflection;
