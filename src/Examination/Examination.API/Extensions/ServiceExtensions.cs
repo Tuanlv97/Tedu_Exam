@@ -95,7 +95,7 @@ namespace Examination.API.Extensions
                             TokenUrl = new Uri($"{configuration.GetValue<string>("IdentityUrl")}/connect/token"),
                             Scopes = new Dictionary<string, string>()
                             {
-                                {"full_access", "Full Access"},
+                                {"exam_api", "exam_api"},
                             }
                         }
                     }
