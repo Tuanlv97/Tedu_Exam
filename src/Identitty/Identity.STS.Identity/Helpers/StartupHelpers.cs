@@ -9,6 +9,7 @@ using Identity.STS.Identity.Configuration.ApplicationParts;
 using Identity.STS.Identity.Configuration.Constants;
 using Identity.STS.Identity.Configuration.Interfaces;
 using Identity.STS.Identity.Helpers.Localization;
+using Identity.STS.Identity.Services;
 using IdentityServer4.Configuration;
 using IdentityServer4.EntityFramework.Storage;
 using Microsoft.AspNetCore.Authentication;
@@ -356,6 +357,7 @@ namespace Identity.STS.Identity.Helpers
             builder.AddCustomValidationKey(configuration);
             builder.AddExtensionGrantValidator<DelegationGrantValidator>();
 
+            builder.AddCustomUserStore();
             return builder;
         }
 

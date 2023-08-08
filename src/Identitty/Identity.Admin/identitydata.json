@@ -8,7 +8,9 @@
     "Users": [
       {
         "Username": "admin",
-        "Password": "Pa$$word123",
+        "FirstName": "Tuan",
+        "LastName": "Anh",
+        "Password": "Admin@123$",
         "Email": "tuanlv@admin.com",
         "Roles": [
           "AdminAdministrator"
@@ -17,7 +19,16 @@
           {
             "Type": "name",
             "Value": "admin"
+          },
+          {
+            "Type": "first_name",
+            "Value": "Tuan"
+          },
+          {
+            "Type": "last_name",
+            "Value": "Anh"
           }
+
         ]
       }
     ]
