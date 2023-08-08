@@ -52,6 +52,19 @@
         "UserClaims": [ "address" ]
       }
     ],
+
+    "ApiScopes": [
+      {
+        "Name": "exam_api",
+        "DisplayName": "exam_api",
+        "Required": true,
+        "UserClaims": [
+          "role",
+          "name"
+        ]
+      }
+    ],
+
     "ApiResources": [
       {
         "Name": "exam_api",

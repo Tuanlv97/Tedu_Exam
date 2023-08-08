@@ -79,11 +79,6 @@ namespace Examination.API.Extensions
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Examination.API V1", Version = "v1" });
                 c.SwaggerDoc("v2", new OpenApiInfo { Title = "Examination.API V2", Version = "v2" });
 
-                var urlIdentity = configuration.GetValue<string>("IdentityUrl");
-
-                Uri serverUri = new Uri($"{urlIdentity}/connect/authorize");
-                var a = new Uri($"{urlIdentity}/connect/authorize");
-
                 c.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme
                 {
                     Type = SecuritySchemeType.OAuth2,

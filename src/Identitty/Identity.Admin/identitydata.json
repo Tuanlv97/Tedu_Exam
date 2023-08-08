@@ -2,7 +2,7 @@
   "IdentityData": {
     "Roles": [
       {
-        "Name": "AdminAdministrator"
+        "Name": "Administrator"
       }
     ],
     "Users": [
@@ -13,7 +13,7 @@
         "Password": "Admin@123$",
         "Email": "tuanlv@admin.com",
         "Roles": [
-          "AdminAdministrator"
+          "Administrator"
         ],
         "Claims": [
           {
