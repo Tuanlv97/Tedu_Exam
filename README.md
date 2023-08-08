@@ -9,3 +9,9 @@
 - Windows: iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/IdentityServer/IdentityServer4.Quickstart.UI/main/getmain.ps1'))
 
 Add-Migration Initial -Context ApplicationDbContext -OutputDir Migrations
+
+Packages References
+- https://github.com/serilog/serilog/wiki/Getting-Started
+- https://github.com/IdentityServer/IdentityServer4.Quickstart.UI
+- https://mudblazor.com/
+- https://github.com/Garderoben/MudBlazor.Templates

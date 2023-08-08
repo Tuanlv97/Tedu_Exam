@@ -73,6 +73,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Identity.STS.Identity", "sr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Identity.Shared", "src\Identitty\Identity.Shared\Identity.Shared.csproj", "{EA3A739B-0979-469B-91E5-A10750E429EB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdminApp", "src\WebApps\AdminApp\AdminApp.csproj", "{1AB7CBE9-7DEA-47B6-98E8-E7D5570CD239}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -179,6 +181,10 @@ Global
 		{EA3A739B-0979-469B-91E5-A10750E429EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EA3A739B-0979-469B-91E5-A10750E429EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EA3A739B-0979-469B-91E5-A10750E429EB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1AB7CBE9-7DEA-47B6-98E8-E7D5570CD239}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1AB7CBE9-7DEA-47B6-98E8-E7D5570CD239}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1AB7CBE9-7DEA-47B6-98E8-E7D5570CD239}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1AB7CBE9-7DEA-47B6-98E8-E7D5570CD239}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -217,6 +223,7 @@ Global
 		{4F3B6675-EE1A-49C8-857C-16F332F256FB} = {92D8B188-02E2-4D1B-9C24-7649BAD3DF0F}
 		{50DE5189-45C4-4AE1-B379-44EC3F1D7D41} = {92D8B188-02E2-4D1B-9C24-7649BAD3DF0F}
 		{EA3A739B-0979-469B-91E5-A10750E429EB} = {92D8B188-02E2-4D1B-9C24-7649BAD3DF0F}
+		{1AB7CBE9-7DEA-47B6-98E8-E7D5570CD239} = {4658A9C2-EAD0-45C9-B301-3E387EE33E5C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2249E8D4-FE9F-49E1-8C65-DD0C642923C4}
