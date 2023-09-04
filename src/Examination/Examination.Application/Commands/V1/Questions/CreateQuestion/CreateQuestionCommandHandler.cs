@@ -1,0 +1,76 @@
+﻿using AutoMapper;
+using Examination.Domain.AggregateModels.QuestionAggregate;
+using Examination.Dtos.Enum;
+using Examination.Dtos.Questions;
+using Examination.Dtos.SeedWork;
+using MediatR;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Logging;
+using MongoDB.Bson;
+
+namespace Examination.Application.Commands.V1.Questions.CreateQuestion
+{
+    public class CreateQuestionCommandHandler : IRequestHandler<CreateQuestionCommand, ApiResult<QuestionDto>>
+    {
+        private readonly IQuestionRepository _questionRepository;
+        private readonly ICategoryRepository _categoryRepository;
+        private readonly IMapper _mapper;
+        private readonly ILogger<CreateQuestionCommandHandler> _logger;
+        private readonly IHttpContextAccessor _httpContextAccessor;
+
+        public CreateQuestionCommandHandler(
+                IQuestionRepository questionRepository,
+                ILogger<CreateQuestionCommandHandler> logger,
+                 IMapper mapper,
+                 IHttpContextAccessor httpContextAccessor,
+                 ICategoryRepository categoryRepository
+            )
+        {
+            _questionRepository = questionRepository;
+            _logger = logger;
+            _mapper = mapper;
+            _httpContextAccessor = httpContextAccessor;
+            _categoryRepository = categoryRepository;
+
+        }
+
+        public async Task<ApiResult<QuestionDto>> Handle(CreateQuestionCommand request, CancellationToken cancellationToken)
+        {
+            if (request.Answers?.Count(x => x.IsCorrect) > 1 && request.QuestionType == QuestionType.SingleSelection)
+            {
+                return new ApiErrorResult<QuestionDto>("Single choice question cannot have multiple correct answers.");
+            }
+            var category = await _categoryRepository.GetCategoriesByIdAsync(request.CategoryId);
+
+            var questionId = ObjectId.GenerateNewId().ToString();
+
+            //Generate ObjectID for new anwers
+            foreach (var item in request.Answers)
+            {
+                if (string.IsNullOrEmpty(item.Id))
+                {
+                    item.Id = ObjectId.GenerateNewId().ToString();
+                }
+            }
+            var answers = _mapper.Map<List<AnswerDto>, List<Answer>>(request.Answers);
+
+
+            var itemToAdd = new Question(questionId,
+                                    request.Content,
+                                    request.QuestionType,
+                                    request.Level,
+                                    request.CategoryId,
+                                    answers,
+                                    request.Explain,
+                                    Guid.NewGuid().ToString(),
+                                  //  _httpContextAccessor.GetUserId(),
+                                    category.Name) ;
+
+            await _questionRepository.InsertAsync(itemToAdd);
+
+            var result = _mapper.Map<Question, QuestionDto>(itemToAdd);
+
+            return new ApiSuccessResult<QuestionDto>(result);
+        }
+    }
+}

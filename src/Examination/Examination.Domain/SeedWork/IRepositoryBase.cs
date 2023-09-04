@@ -8,10 +8,10 @@
 
         Task DeleteAsync(string id);
 
-        void StartTransaction();
+     //   void StartTransaction();
 
         Task CommitTransactionAsync(T entity, CancellationToken cancellationToken = default);
 
-        Task AbortTransactionAsync(CancellationToken cancellationToken = default);
+   //     Task AbortTransactionAsync(CancellationToken cancellationToken = default);
     }
 }

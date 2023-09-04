@@ -18,7 +18,7 @@ namespace Examination.Application.DomainEventHandlers.V1
             var user = await _userRepository.GetUserByIdAsync(notification.UserId);
             if (user == null)
             {
-                _userRepository.StartTransaction();
+               // _userRepository.StartTransaction();
                 user = User.CreateNewUser(notification.UserId, notification.FirstName, notification.LastName);
                 await _userRepository.InsertAsync(user);
                 await _userRepository.CommitTransactionAsync(user, cancellationToken);

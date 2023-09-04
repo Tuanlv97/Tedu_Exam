@@ -10,9 +10,8 @@ namespace Examination.Infrastructure.MongoDb.Repositories
     {
         public UserRepository(
             IMongoClient mongoClient,
-        IClientSessionHandle clientSessionHandle,
         IOptions<ExamSettings> settings, IMediator mediator)
-        : base(mongoClient, clientSessionHandle, settings, mediator, Constants.Collections.User)
+        : base(mongoClient, settings, mediator, Constants.Collections.User)
         {
         }
 

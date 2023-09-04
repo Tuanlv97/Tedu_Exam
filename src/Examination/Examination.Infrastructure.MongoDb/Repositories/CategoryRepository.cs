@@ -9,10 +9,9 @@ namespace Examination.Infrastructure.MongoDb.Repositories
     {
         public CategoryRepository(
           IMongoClient mongoClient,
-          IClientSessionHandle clientSessionHandle,
           IOptions<ExamSettings> settings,
           IMediator mediator)
-      : base(mongoClient, clientSessionHandle, settings, mediator, Constants.Collections.Exam)
+      : base(mongoClient, settings, mediator, Constants.Collections.Exam)
         {
         }
 

@@ -12,7 +12,7 @@ namespace Examination.Domain.AggregateModels.QuestionAggregate
     public class Question : Entity, IAggregateRoot
     {
         public Question(string id, string content, QuestionType questionType, Level level, string categoryId,
-            IEnumerable<Answer> answers, string explain, string ownerUserId = null)
+            IEnumerable<Answer> answers, string explain, string ownerUserId = null, string categoryName = null)
         {
             if (answers == null && !answers.Any())
                 throw new ArgumentNullException($"{nameof(answers)} can not be null.");
@@ -20,8 +20,8 @@ namespace Examination.Domain.AggregateModels.QuestionAggregate
             if (questionType == QuestionType.SingleSelection && answers.Count(x => x.IsCorrect) > 1)
                 throw new ArgumentNullException($"{nameof(answers)} is invalid.");
 
-            (Id, Content, QuestionType, Level, CategoryId, Answers, Explain, DateCreated, OwnerUserId) = (id, content,
-                questionType, level, categoryId, answers, explain, DateTime.UtcNow, ownerUserId);
+            (Id, Content, QuestionType, Level, CategoryId, Answers, Explain, DateCreated, OwnerUserId, CategoryName) = (id, content,
+                questionType, level, categoryId, answers, explain, DateTime.UtcNow, ownerUserId, categoryName);
         }
 
         [BsonElement("content")]
@@ -35,6 +35,9 @@ namespace Examination.Domain.AggregateModels.QuestionAggregate
 
         [BsonElement("categoryId")]
         public string CategoryId { get; set; }
+        [BsonElement("categoryName")]
+        public string CategoryName { get; set; }
+
 
         [BsonElement("answers")]
         public IEnumerable<Answer> Answers { set; get; }
