@@ -1,7 +1,7 @@
 ﻿using Examination.Dtos.Dtos;
 using MediatR;
 
-namespace Examination.Application.Queries.V1
+namespace Examination
 {
     public class GetHomeExamListQuery : IRequest<IEnumerable<ExamDto>>
     {

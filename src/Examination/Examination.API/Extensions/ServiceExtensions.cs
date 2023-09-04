@@ -143,6 +143,7 @@ namespace Examination.API.Extensions
             services.AddTransient<IExamRepository, ExamRepository>();
             services.AddTransient<IExamResultRepository, ExamResultRepository>();
             services.AddTransient<IUserRepository, UserRepository>();
+            services.AddTransient<ICategoryRepository, CategoryRepository>();
             return services;
         }
     }

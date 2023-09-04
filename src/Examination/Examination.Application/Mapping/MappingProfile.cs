@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Examination.Domain.AggregateModels.ExamAggregate;
+using Examination.Dtos.Category;
 using Examination.Dtos.Dtos;
 
 namespace Examination.Application.Mapping
@@ -9,6 +10,7 @@ namespace Examination.Application.Mapping
         public MappingProfile()
         {
             CreateMap<Exam, ExamDto>().ReverseMap();
+            CreateMap<Category, CategoryDto>().ReverseMap();
         }
     }
 }

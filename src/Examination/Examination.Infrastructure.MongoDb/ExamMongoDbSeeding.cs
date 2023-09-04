@@ -1,17 +1,13 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using Examination.Domain.AggregateModels.ExamAggregate;
+using Examination.Domain.AggregateModels.QuestionAggregate;
+using Examination.Dtos.Enum;
+using Examination.Infrastructure.MongoDb.SeedWork;
 using Microsoft.Extensions.Logging;
-using MongoDB.Bson;
 using Microsoft.Extensions.Options;
+using MongoDB.Bson;
 using MongoDB.Driver;
 using Polly;
 using Polly.Retry;
-using System.Collections.Generic;
-using Examination.Domain.AggregateModels.CategoryAggregate;
-using Examination.Domain.AggregateModels.QuestionAggregate;
-using Examination.Domain.AggregateModels.ExamAggregate;
-using Examination.Dtos.Enum;
-using Examination.Infrastructure.MongoDb.SeedWork;
 
 namespace Examination.Infrastructure
 {

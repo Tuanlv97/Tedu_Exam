@@ -1,5 +1,4 @@
-﻿using Examination.Application.Queries.V1;
-using MediatR;
+﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Examination.API.Controllers.V2
